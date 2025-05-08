@@ -24,7 +24,7 @@ for_output_2.sh
 # Data Filtering Pipeline
 1.Column Selection
 
-for_output_3.R
+* **for_output_3.R**
 → Filters and keeps only required columns from the raw data in output_2/.
 ➡️ Output: output_3/
 

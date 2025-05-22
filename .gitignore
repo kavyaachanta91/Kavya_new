@@ -1,0 +1,26 @@
+# R / RStudio
+.Rhistory
+.RData
+.Rproj.user/
+.Rproj
+
+# Logs and system files
+*.log
+.DS_Store
+Thumbs.db
+
+# Shell script output folders
+output_2/
+output_3/
+output_4/
+output_5/
+
+# Final outputs (optional)
+final_metadata.csv
+combined_data.csv
+
+# Temporary or backup files
+*.tmp
+*.bak
+*.swp
+

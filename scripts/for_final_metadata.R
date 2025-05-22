@@ -1,12 +1,13 @@
-# Load necessary libraries
 library(GEOquery)
 library(dplyr)
+library(here)
 
-# Step 1: Read your original metadata file
-metadata <- read.csv("combined_data.csv", stringsAsFactors = FALSE)
+# Step 1: Read your original metadata file using here()
+metadata_file <- here("combined_data.csv")
+metadata <- read.csv(metadata_file, stringsAsFactors = FALSE)
 
 # Step 2: Extract unique GEO series IDs
-geo_ids <- unique(metadata$unique_sample_series_id)  # Replace with actual column name if different
+geo_ids <- unique(metadata$unique_sample_series_id)  # Ensure this column name is correct
 
 # Step 3: Use GEOquery to fetch metadata for each GSE
 geo_info <- lapply(geo_ids, function(geo_id) {
@@ -37,8 +38,8 @@ geo_info_df <- bind_rows(geo_info)
 # Step 5: Join with your summary metadata
 final_metadata <- left_join(metadata, geo_info_df, by = c("unique_sample_series_id" = "GEO_ID"))
 
-# Step 6: Save to CSV
-write.csv(final_metadata, "final_metadata.csv", row.names = FALSE)
+# Step 6: Save to CSV using here()
+output_file <- here("final_metadata.csv")
+write.csv(final_metadata, output_file, row.names = FALSE)
 
-# Done!
-message("Metadata enrichment complete. Saved to final_metadata.csv")
+message("Metadata enrichment complete. Saved to: ", output_file)
